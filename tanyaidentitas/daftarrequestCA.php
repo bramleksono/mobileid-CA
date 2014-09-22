@@ -3,8 +3,10 @@ require_once('../lib/filemanipulation.php');
 
 //konfigurasi
 $CAid = "123123123asfgfjhhtweasdvbgjtyrewras";
-$CAcallbackaddr = "http://red-trigger-44-141737.apse1.nitrousbox.com/CA/tanyaidentitas/terimakonfirmasiCA.php";
-$SIaddr = "http://red-trigger-44-141737.apse1.nitrousbox.com/SI/daftarlogin.php";
+$CAcallbackaddr = "http://localhost/ca/mobileid-CA/tanyaidentitas/terimakonfirmasiCA.php";
+// $CAcallbackaddr = "http://red-trigger-44-141737.apse1.nitrousbox.com/CA/tanyaidentitas/terimakonfirmasiCA.php";
+$SIaddr = "http://localhost/si/mobileid-SI/daftarlogin.php";
+// $SIaddr = "http://red-trigger-44-141737.apse1.nitrousbox.com/SI/daftarlogin.php";
 //
 
 function cariapp($appid) {
@@ -42,6 +44,7 @@ function sendpost($url,$data) {
 
     $context     = stream_context_create($options);
     $result      = file_get_contents($url, false, $context);
+    echo $result;
     $response    = json_decode($result, true);
     return $response;
 }
@@ -66,7 +69,7 @@ if (cariapp($AppID) >= 0) {
         $sendquery  = sendpost($SIaddr,$request);
         //echo json_encode( $sendquery );
         
-        if ($sendquery["STATUS"]["Success"] = TRUE) {
+        if ($sendquery["STATUS"]["Success"] == true) {
             //catat query di file pid
             $pid = $sendquery["STATUS"]["PID"];
             $daftar = catatpid($IDNumber,$pid,$postdata);
