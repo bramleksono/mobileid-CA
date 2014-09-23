@@ -17,19 +17,23 @@ set_time_limit(0);
 
 // where does the data come from ? In real world this would be a SQL query or something
 $data_source_file = 'data.txt';
+// $data_source_file = '../pid/".$_GET['file_id']';
 
 // main loop
 while (true) {
-
+    // $ts = $_GET['timestamp'];
+    // $fid = $_GET['file_id'];
+    // echo "$ts $fid \n";
     // if ajax request has send a timestamp, then $last_ajax_call = timestamp, else $last_ajax_call = null
     $last_ajax_call = isset($_GET['timestamp']) ? (int)$_GET['timestamp'] : null;
-    // $data_source_file = isset($_GET['file_id']) ? "../pid/".$_GET['file_id'] : 'data.txt';
+    $data_source_file = isset($_GET['file_id']) ? "../data/pid/".$_GET['file_id'] : 'data.txt';
 
+    // echo "$last_ajax_call $data_source_file\n";
     // PHP caches file data, like requesting the size of a file, by default. clearstatcache() clears that cache
     clearstatcache();
     // get timestamp of when file has been changed the last time
     $last_change_in_data_file = filemtime($data_source_file);
-    $new_path = "../pid/".$_GET['file_id'];
+    // $new_path = "../pid/".$_GET['file_id'];
 
     // if no timestamp delivered via ajax or data.txt has been changed SINCE last ajax timestamp
     if ($last_ajax_call == null || $last_change_in_data_file > $last_ajax_call) {
@@ -41,7 +45,7 @@ while (true) {
         $result = array(
             'data_from_file' => $data,
             'timestamp' => $last_change_in_data_file,
-            'file_id' => $new_path
+            'file_id' => $data_source_file
         );
 
         // encode to JSON, render the result (for AJAX)

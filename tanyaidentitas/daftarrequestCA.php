@@ -44,7 +44,6 @@ function sendpost($url,$data) {
 
     $context     = stream_context_create($options);
     $result      = file_get_contents($url, false, $context);
-    echo $result;
     $response    = json_decode($result, true);
     return $response;
 }
@@ -67,18 +66,18 @@ if (cariapp($AppID) >= 0) {
         $message = "Permintaan Login : ".$postmessage;
         $request = constructrequest($CAid,$message,$CAcallbackaddr,$data);
         $sendquery  = sendpost($SIaddr,$request);
-        //echo json_encode( $sendquery );
         
         if ($sendquery["STATUS"]["Success"] == true) {
             //catat query di file pid
             $pid = $sendquery["STATUS"]["PID"];
             $daftar = catatpid($IDNumber,$pid,$postdata);
             //kirim data ke SI
-            echo "Permintaan berhasil";
+            // echo "Permintaan berhasil";
+            echo json_encode($sendquery);
         }
-        else echo "Tidak dapat mengirim query";
+        // else echo "Tidak dapat mengirim query";
     }
-    else echo "Nomor identitas tidak terdaftar";
+    // else echo "Nomor identitas tidak terdaftar";
 }
-else echo "App ID tidak terdaftar";
+// else echo "App ID tidak terdaftar";
 ?>
