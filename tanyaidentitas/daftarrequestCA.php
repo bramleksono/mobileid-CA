@@ -3,23 +3,23 @@ require_once('../lib/filemanipulation.php');
 
 //konfigurasi
 $CAid = "123123123asfgfjhhtweasdvbgjtyrewras";
-$CAcallbackaddr = "http://localhost/ca/mobileid-CA/tanyaidentitas/terimakonfirmasiCA.php";
-// $CAcallbackaddr = "http://red-trigger-44-141737.apse1.nitrousbox.com/CA/tanyaidentitas/terimakonfirmasiCA.php";
-$SIaddr = "http://localhost/si/mobileid-SI/daftarlogin.php";
-// $SIaddr = "http://red-trigger-44-141737.apse1.nitrousbox.com/SI/daftarlogin.php";
+//$CAcallbackaddr = "http://localhost/ca/mobileid-CA/tanyaidentitas/terimakonfirmasiCA.php";
+$CAcallbackaddr = "http://red-trigger-44-141737.apse1.nitrousbox.com/CA/tanyaidentitas/terimakonfirmasiCA.php";
+//$SIaddr = "http://localhost/si/mobileid-SI/daftarlogin.php";
+$SIaddr = "http://red-trigger-44-141737.apse1.nitrousbox.com/SI/daftarlogin.php";
 //
 
 function cariapp($appid) {
     return findline($appid,'../data/app.txt');
 }
 
-function catatpid($IDNumber,$pid,$data) {
+function catatpid($IDNumber,$pid) {
     $filename = $IDNumber.".".$pid;
     if (file_exists("../data/pid/".$filename) == 0) {
         //echo "Catat sebagai proses baru. PID = $pid".PHP_EOL;
-        $encode = json_encode($data);
+        $text = "Menunggu konfirmasi..";
         //tulis ke file
-        if (!file_put_contents("../data/pid/".$filename, $encode)) {
+        if (!file_put_contents("../data/pid/".$filename, $text)) {
             exit("kesalahan menyimpan process id");
         }
     }
@@ -70,7 +70,7 @@ if (cariapp($AppID) >= 0) {
         if ($sendquery["STATUS"]["Success"] == true) {
             //catat query di file pid
             $pid = $sendquery["STATUS"]["PID"];
-            $daftar = catatpid($IDNumber,$pid,$postdata);
+            $daftar = catatpid($IDNumber,$pid);
             //kirim data ke SI
             // echo "Permintaan berhasil";
             echo json_encode($sendquery);
