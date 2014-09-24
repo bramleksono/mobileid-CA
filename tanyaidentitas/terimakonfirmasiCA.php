@@ -1,25 +1,14 @@
 <?php
 
-function kirimcallback($url,$IDNumber) {
-    //$url="http://postcatcher.in/catchers/5417ac22dc35d6020000077f";
-    $data=array('From' => 'Certificate Authority', 'Success' => TRUE, 'NIK' => $IDNumber);
-    sendpost($url,$data);
-}
-
-function sendpost($url,$data) {
-    $options = array(
-        'http' => array(
-            'method'  => 'POST',
-            'content' => json_encode( $data ),
-            'header'=>  "Content-Type: application/json\r\n" .
-                        "Accept: application/json\r\n"
-          )
-    );
-
-    $context     = stream_context_create($options);
-    $result      = file_get_contents($url, false, $context);
-    $response    = json_decode($result, true);
-    return $response;
+function tulispid($IDNumber,$PID,$data) {
+    $filename = $IDNumber.".".$PID;
+    $text = json_encode($data);
+    if (file_exists("../data/pid/".$filename) == 1) {
+        if (!file_put_contents("../data/pid/".$filename, $text)) {
+            exit("kesalahan menyimpan process id");
+        }
+    }
+    else exit("process id tidak ditemukan");
 }
 
 //reveice post message
@@ -35,9 +24,10 @@ $filename = $IDNumber.".".$PID;
 
 if (!file_exists("../data/pid/".$filename) == 0) {
     if ($postdata["STATUS"]["Success"] = TRUE) {
-        $data = json_decode(file_get_contents("../data/pid/".$filename), true);
-        $CallbackURL =  $data["META"]["CallbackURL"];
-        kirimcallback($CallbackURL,$IDNumber);
+        tulispid($IDNumber,$PID,$postdata);
+        $data=array('From' => 'Certificate Authority', 'Success' => TRUE, 'NIK' => $IDNumber, 'PID' => $PID);
+        header('Content-type: application/json');
+        echo json_encode($data);
     }
     else echo "Status Gagal";
 }
