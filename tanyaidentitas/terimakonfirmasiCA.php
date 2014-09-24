@@ -23,7 +23,7 @@ $IDNumber =  $postdata["NIK"];
 $filename = $IDNumber.".".$PID;
 
 if (!file_exists("../data/pid/".$filename) == 0) {
-    if ($postdata["STATUS"]["Success"] = TRUE) {
+    if ($postdata["Success"] == TRUE) {
         tulispid($IDNumber,$PID,$postdata);
         $data=array('From' => 'Certificate Authority', 'Success' => TRUE, 'NIK' => $IDNumber, 'PID' => $PID);
         header('Content-type: application/json');
