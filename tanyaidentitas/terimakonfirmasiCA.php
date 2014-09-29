@@ -1,14 +1,48 @@
 <?php
+require_once('../lib/filemanipulation.php');
 
-function tulispid($IDNumber,$PID,$data) {
-    $filename = $IDNumber.".".$PID;
-    $text = json_encode($data);
-    if (file_exists("../data/pid/".$filename) == 1) {
-        if (!file_put_contents("../data/pid/".$filename, $text)) {
-            exit("kesalahan menyimpan process id");
+function tulispid($IDNumber,$PID,$postdata) {
+    $fileoutput = $IDNumber.".".$PID;
+    $filektp = $IDNumber.".json";
+    $dataktp = json_decode(file_get_contents("../data/ktp/".$filektp), true);
+
+    $fp = fopen("../data/pid/".$fileoutput, 'w');
+    foreach ($dataktp["KTP"] as $key => $value) {
+        # code...
+        if(is_array($value)){
+            fwrite($fp, $key.": ");
+            foreach ($value as $k => $v) {
+                # code...
+                fwrite($fp, $v." ");
+            }
+            fwrite($fp, "\n");
+        }
+        else{
+            fwrite($fp, $key.": ".$value."\n");
         }
     }
-    else exit("process id tidak ditemukan");
+    fwrite($fp, "\n\n");
+    fwrite($fp, "Signature: ".$postdata["signature"]."\n");
+    fwrite($fp, "OTP: ".$postdata["OTP"]."\n");
+    fwrite($fp, "HMAC: ".$postdata["hmac"]."\n");
+    fclose($fp);
+    // $text = json_encode($postdata);
+    // if (file_exists("../data/pid/".$filename) == 1) {
+    //     if (!file_put_contents("../data/pid/".$filename, $text)) {
+    //         exit("kesalahan menyimpan process id");
+    //     }
+    // }
+    // else exit("process id tidak ditemukan");
+}
+
+function response($Status,$IDNumber,$pid,$Message) {
+    $response['STATUS'] = array(
+      'Success' => $Status, 
+      'NIK' => $IDNumber,
+      'PID' => $pid,
+      'Message' => $Message,
+    );
+    return json_encode($response);
 }
 
 //reveice post message
@@ -23,14 +57,16 @@ $IDNumber =  $postdata["NIK"];
 $filename = $IDNumber.".".$PID;
 
 if (!file_exists("../data/pid/".$filename) == 0) {
-    if ($postdata["Success"] == TRUE) {
+    if ($postdata["Success"] == true) {
         tulispid($IDNumber,$PID,$postdata);
-        $data=array('From' => 'Certificate Authority', 'Success' => TRUE, 'NIK' => $IDNumber, 'PID' => $PID);
+        $data=array('From' => 'Certificate Authority', 'Success' => true, 'NIK' => $IDNumber, 'PID' => $PID);
         header('Content-type: application/json');
         echo json_encode($data);
     }
-    else echo "Status Gagal";
+    // else echo "Status Gagal";
+    else echo response(false,$IDNumber,$PID,"Status gagal");
 }
-else echo "PID tidak ditemukan";
+// else echo "PID tidak ditemukan";
+else echo response(false,$IDNumber,$PID,"PID tidak ditemukan");
 
 ?>

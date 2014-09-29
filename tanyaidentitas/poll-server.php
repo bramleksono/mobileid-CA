@@ -39,7 +39,8 @@ while (true) {
     if ($last_ajax_call == null || $last_change_in_data_file > $last_ajax_call) {
 
         // get content of data.txt
-        $data = file_get_contents($data_source_file);
+        // $data = file_get_contents($data_source_file);
+        $data = file($data_source_file);
 
         // put data.txt's content and timestamp of last data.txt change into array
         $result = array(
