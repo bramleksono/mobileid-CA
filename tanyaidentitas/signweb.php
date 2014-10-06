@@ -65,8 +65,22 @@ if(isset($_POST["id"])){
             echo "Request sent, PID file not created";
         }
     }
-}
-else{
+} elseif (isset($_POST["websign"])) {
+    # code...
+    $signature = base64_decode($_POST["websign"]);
+    $data = $_POST["hash"];
+    $signer_id = $_POST["signer"];
+    // $public_key_pem = $details['key'];
+    $pub_key = file_get_contents('./../cert/'.$signer_id.'.cert.pem');
+    $pub = openssl_pkey_get_public($pub_key);
+    // echo $data;
+    $r = openssl_verify($data, $signature, $pub, "sha256WithRSAEncryption");
+    if($r == 1){
+        echo "Verified. Data signed by: ".$signer_id;
+    } else {
+        echo "Data verification error!";
+    }
+} else {
 	echo "error";
 }
 
