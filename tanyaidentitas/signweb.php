@@ -1,4 +1,6 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+
 require_once('../lib/filemanipulation.php');
 include ('./addr-path.php');
 

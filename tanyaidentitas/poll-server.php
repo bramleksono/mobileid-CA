@@ -1,4 +1,6 @@
-<?php
+<?php 
+
+header('Access-Control-Allow-Origin: *');
 
 /**
  * Server-side file.
@@ -25,8 +27,10 @@ while (true) {
     // $fid = $_GET['file_id'];
     // echo "$ts $fid \n";
     // if ajax request has send a timestamp, then $last_ajax_call = timestamp, else $last_ajax_call = null
-    $last_ajax_call = isset($_GET['timestamp']) ? (int)$_GET['timestamp'] : null;
-    $data_source_file = isset($_GET['file_id']) ? "../data/pid/".$_GET['file_id'] : 'data.txt';
+    // $last_ajax_call = isset($_GET['timestamp']) ? (int)$_GET['timestamp'] : null;
+    // $data_source_file = isset($_GET['file_id']) ? "../data/pid/".$_GET['file_id'] : 'data.txt';
+    $last_ajax_call = isset($_POST['timestamp']) ? (int)$_POST['timestamp'] : null;
+    $data_source_file = isset($_POST['file_id']) ? "../data/pid/".$_POST['file_id'] : 'data.txt';
 
     // echo "$last_ajax_call $data_source_file\n";
     // PHP caches file data, like requesting the size of a file, by default. clearstatcache() clears that cache
