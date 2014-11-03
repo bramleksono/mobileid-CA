@@ -76,9 +76,9 @@ if (cariapp($AppID) >= 0) {
             // echo "Permintaan berhasil";
             echo json_encode($sendquery);
         }
-        // else echo "Tidak dapat mengirim query";
+         else echo "Tidak dapat mengirim query";
     }
-    // else echo "Nomor identitas tidak terdaftar";
+     else echo "Nomor identitas tidak terdaftar";
 }
-// else echo "App ID tidak terdaftar";
+ else echo "App ID tidak terdaftar";
 ?>
