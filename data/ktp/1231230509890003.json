@@ -1,0 +1,27 @@
+{
+  "META": {
+    "DeviceID": "APA91bHA6D7bdTxL9_458fvEediJAo4QO3XsrhqE3hpnh2FIaC4PTyDargYgABomoVfBhGB0h_z2CLljQ_sfiNtOEkzoRMmxJ42anfKYradnBL-KvQbugjMnYXErE--7rnUQop2rSePfIO8In4aMK6aRfQESFxWTrQ"
+  },
+  "KTP": {
+    "NIK": "1231230509890003",
+    "Nama": "NEXUS PUTIH",
+    "TempatTglLahir": {
+      "TempatLahir": "BANDUNG",
+      "TanggalLahir": "05/09/1989"
+    },
+    "JenisKelamin": "LAKI-LAKI",
+    "GolDarah": "B",
+    "Alamat": {
+      "Jalan": "JL GANESHA 12",
+      "RT": "001",
+      "RW": "002",
+      "KelDesa": "DAGO",
+      "Kecamatan": "CIBEUNYING"
+    },
+    "Agama": "ISLAM",
+    "StatusPerkawinan": "BELUM KAWIN",
+    "Pekerjaan": "PELAJAR/MAHASISWA",
+    "Kewarganegaraan": "WNI",
+    "BerlakuHingga": "05/09/2015"
+  }
+}

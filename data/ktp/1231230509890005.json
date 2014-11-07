@@ -1,0 +1,27 @@
+{
+  "META": {
+    "DeviceID": "APA91bGOrQpDmcBQCFDr1gq628HIfOjAjjoDhkMJBuEHcmRbkes5H4Wh2thZ3gBF5nDe529JdX8W1G-r6x6rPDhjLPXW-OWiijHuH1Sx-EU_tXucnM5gryaQwJeMnENQBVizaasFFHQPXforxF9xK31C4ybS-nudsw"
+  },
+  "KTP": {
+    "NIK": "1231230509890005",
+    "Nama": "NEXUS HITAM",
+    "TempatTglLahir": {
+      "TempatLahir": "BANDUNG",
+      "TanggalLahir": "05/09/1989"
+    },
+    "JenisKelamin": "PEREMPUAN",
+    "GolDarah": "B",
+    "Alamat": {
+      "Jalan": "JL GANESHA 12",
+      "RT": "001",
+      "RW": "002",
+      "KelDesa": "DAGO",
+      "Kecamatan": "CIBEUNYING"
+    },
+    "Agama": "ISLAM",
+    "StatusPerkawinan": "BELUM KAWIN",
+    "Pekerjaan": "PELAJAR/MAHASISWA",
+    "Kewarganegaraan": "WNI",
+    "BerlakuHingga": "05/09/2015"
+  }
+}

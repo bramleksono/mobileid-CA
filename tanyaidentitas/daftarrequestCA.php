@@ -2,6 +2,8 @@
 require_once('../lib/filemanipulation.php');
 include ('./addr-path.php');
 
+date_default_timezone_set('Asia/Jakarta');
+
 //konfigurasi
 $CAid = "123123123asfgfjhhtweasdvbgjtyrewras";
 // $CAcallbackaddr = "http://localhost/ca/mobileid-CA/tanyaidentitas/terimakonfirmasiCA.php";
@@ -64,10 +66,11 @@ if (cariapp($AppID) >= 0) {
         $data = json_decode(file_get_contents("../data/ktp/".$filename), true);
 
         //data ktp ada, catat permintaan dan lanjutkan query ke SI
-        $message = "Permintaan Login : ".$postmessage;
+        $message = $postmessage;
         $request = constructrequest($CAid,$message,$CAcallbackaddr,$data);
-        $sendquery  = sendpost($SIaddr,$request);
         
+        $sendquery  = sendpost($SIaddr,$request);
+
         if ($sendquery["STATUS"]["Success"] == true) {
             //catat query di file pid
             $pid = $sendquery["STATUS"]["PID"];

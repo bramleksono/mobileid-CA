@@ -9,12 +9,9 @@ $CAcallbackaddr = $CAmainaddr."tanyaidentitas/terimakonfirmasiCA.php";
 $CAwebsigncallback = $CAmainaddr."tanyaidentitas/terimawebsignCA.php";
 $CAdocsigncallback = $CAmainaddr."tanyaidentitas/terimadocsignCA.php";
 
-
 $SIaddr = $SImainaddr."daftarlogin.php";
 $SIaddrsignweb = $SImainaddr."signweb-si.php";
 $SIaddrdocsign = $SImainaddr."daftardocsign.php";
-
-
-//$SIaddrsignweb = "http://postcatcher.in/catchers/5449bd66b5989402000001a9";
+$SIaddrmessage = $SImainaddr."kirimmessage.php";
 
 ?>
