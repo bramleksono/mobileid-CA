@@ -4,22 +4,22 @@
   },
   "KTP": {
     "NIK": "1231230509890003",
-    "Nama": "NEXUS PUTIH",
+    "Nama": "ADRIAN DWIANANTO",
     "TempatTglLahir": {
       "TempatLahir": "BANDUNG",
-      "TanggalLahir": "05/09/1989"
+      "TanggalLahir": "12/05/1987"
     },
     "JenisKelamin": "LAKI-LAKI",
-    "GolDarah": "B",
+    "GolDarah": "O",
     "Alamat": {
       "Jalan": "JL GANESHA 12",
-      "RT": "001",
-      "RW": "002",
+      "RT": "004",
+      "RW": "006",
       "KelDesa": "DAGO",
       "Kecamatan": "CIBEUNYING"
     },
     "Agama": "ISLAM",
-    "StatusPerkawinan": "BELUM KAWIN",
+    "StatusPerkawinan": "KAWIN",
     "Pekerjaan": "PELAJAR/MAHASISWA",
     "Kewarganegaraan": "WNI",
     "BerlakuHingga": "05/09/2015"

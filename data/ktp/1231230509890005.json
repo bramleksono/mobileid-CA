@@ -4,22 +4,22 @@
   },
   "KTP": {
     "NIK": "1231230509890005",
-    "Nama": "NEXUS HITAM",
+    "Nama": "EMIR MAULUDI HUSNI",
     "TempatTglLahir": {
       "TempatLahir": "BANDUNG",
-      "TanggalLahir": "05/09/1989"
+      "TanggalLahir": "05/09/1970"
     },
-    "JenisKelamin": "PEREMPUAN",
+    "JenisKelamin": "LAKI-LAKI",
     "GolDarah": "B",
     "Alamat": {
       "Jalan": "JL GANESHA 12",
-      "RT": "001",
-      "RW": "002",
+      "RT": "006",
+      "RW": "001",
       "KelDesa": "DAGO",
       "Kecamatan": "CIBEUNYING"
     },
     "Agama": "ISLAM",
-    "StatusPerkawinan": "BELUM KAWIN",
+    "StatusPerkawinan": "KAWIN",
     "Pekerjaan": "PELAJAR/MAHASISWA",
     "Kewarganegaraan": "WNI",
     "BerlakuHingga": "05/09/2015"
